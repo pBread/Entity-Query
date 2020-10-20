@@ -50,7 +50,7 @@ a === b;
 
 ## Example
 
-Consider building a product catalog. We start with an array of product records, like so...
+Consider building a product catalog. An array of product records is fetched from an API and stored in state.
 
 ```json5
 [
