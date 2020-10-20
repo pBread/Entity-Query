@@ -7,6 +7,20 @@ import hash from "object-hash";
 const iCache = new WeakMap();
 const qCache = new WeakMap();
 
+/**
+ * Constructs an object w/Mo methods
+ * @name Mo
+ * @function
+ * @returns { { filter: function(): Object[], find: function(): Object, search: function(): string[] } } - Object w/Mo methods
+ *
+ * @param { Object[] } docs - Array of JSON objects
+ *
+ * @param { Object } [options] - Default options. Can be overriden in method args.
+ * @param { boolean } [options.cache=true] - Controls whether results are memoized. This is a low-level setting and should only be disabled in rare circumstances.
+ * @param { string } [options.key="id"] - Indentifying key for docs
+ * @param { ( "all" | "any" | "diff" | "none") } [options.conditions="all"] - Determines behavior of the query.
+ */
+
 export function Mo(docs, options = {}) {
   return {
     filter(query, opts = {}) {
@@ -81,12 +95,13 @@ function getIn(docs, path, opts) {
   if (qMap.has(pathHash)) return qMap.get(pathHash); // Return cached query result
 
   const ids = [...new Set(traverse(index, pathArr).flat(Infinity))];
-  qCache.set(
-    index,
-    qCache.has(index)
-      ? new Map([...qCache.get(index), ...qMap.set(pathHash, ids)])
-      : qMap.set(pathHash, ids)
-  );
+  if (opts.cache)
+    qCache.set(
+      index,
+      qCache.has(index)
+        ? new Map([...qCache.get(index), ...qMap.set(pathHash, ids)])
+        : qMap.set(pathHash, ids)
+    );
 
   return ids;
 }
@@ -112,7 +127,7 @@ function getIndex(docs, opts) {
   if (iCache.has(docs)) return iCache.get(docs);
 
   const docIndex = toIndex(docs, opts);
-  iCache.set(docs, docIndex);
+  if (opts.cache) iCache.set(docs, docIndex);
   return docIndex;
 }
 
@@ -161,6 +176,7 @@ function toObj(value, path) {
 
 function toOpts(options) {
   return {
+    cache: options?.cache ?? true,
     conditions: options?.conditions || "all",
     key: options?.key || "id",
   };
