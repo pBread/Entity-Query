@@ -53,14 +53,14 @@ Mo(records).search({ description: "/purple/i" }, { conditions: "none" }); // all
 
 MoSearch is designed to be called _liberally_ across your app. Under the hood, incremetal [Memoization](https://en.wikipedia.org/wiki/Memoization) (specifically [weak](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) memoization) is used to cache (1) the "expensive" task of indexing a dataset and (2) each query result.
 
-Firstly, this means running multiple queries on a single dataset is extremely cheap.
+Firstly, this makes it extremely cheap to run multiple queries on a dataset.
 
 ```js
 Mo(lotsOfRecords).search({ name: "Purple Socks" }); // "expensive" data indexing is cached
 Mo(lotsOfRecords).search({ metadata: { material: "wool" } }); // no indexing
 ```
 
-Secondly, this means the same query will return the previous result, which is helpful to prevent rerendering.
+Secondly, the same query on the same dataset will return the same result, which is helpful to prevent rerendering.
 
 ```js
 const a = Mo(records).search({ name: "Purple Socks" });
@@ -70,7 +70,7 @@ a === b;
 // true
 ```
 
-Thirdly, this cache is global thus these benefits are enjoyed across your app.
+Thirdly, cache is global thus these benefits are enjoyed across your app.
 
 ## Example
 
