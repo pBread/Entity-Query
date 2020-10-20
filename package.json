@@ -1,6 +1,13 @@
 {
-  "dependencies": {},
-  "devDependencies": {},
+  "dependencies": {
+    "lodash.difference": "^4.5.0",
+    "lodash.intersection": "^4.4.0",
+    "lodash.mergewith": "^4.6.2",
+    "object-hash": "^2.0.3"
+  },
+  "devDependencies": {
+    "microbundle": "^0.12.4"
+  },
   "name": "mosearch",
   "peerDependencies": {},
   "scripts": {},
