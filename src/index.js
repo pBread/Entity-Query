@@ -16,7 +16,7 @@ const qCache = new WeakMap();
  * @param { Object[] } docs - Array of JSON objects
  *
  * @param { Object } [options] - Default options. Can be overriden in method args.
- * @param { boolean } [options.cache=true] - Controls whether results are memoized. This is a low-level setting and should only be disabled in rare circumstances.
+ * @param { boolean } [options.cache=true] - Controls whether results are memoized. This is a low-level setting and should be disabled in rare circumstances only.
  * @param { string } [options.key="id"] - Indentifying key for docs
  * @param { ( "all" | "any" | "diff" | "none") } [options.conditions="all"] - Determines behavior of the query.
  */
