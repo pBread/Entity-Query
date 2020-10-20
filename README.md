@@ -25,7 +25,7 @@ Mo(records).search({ metadata: { material: "wool" } });
 #### Regex
 
 ```js
-Mo(records).search({ name: "/purple/i" });
+Mo(records).search({ description: "/purple/i" });
 ```
 
 #### Conditions
