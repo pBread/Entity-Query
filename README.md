@@ -10,25 +10,25 @@ MoSearch is designed to allow developers to search/filter/find records in a simp
 
 ## Features
 
-#### Queries
+##### Queries
 
 ```js
 Mo(records).search({ name: "Purple Socks" });
 ```
 
-#### Nested Queries
+##### Nested Queries
 
 ```js
 Mo(records).search({ metadata: { material: "wool" } });
 ```
 
-#### Regex
+##### Regex
 
 ```js
 Mo(records).search({ description: "/purple/i" });
 ```
 
-#### Conditions
+##### Conditions
 
 ```js
 Mo(records).search([{ name: "/athletic/i" }, { description: "/athletic/i" }], {
@@ -36,7 +36,7 @@ Mo(records).search([{ name: "/athletic/i" }, { description: "/athletic/i" }], {
 });
 ```
 
-#### Memoized
+##### Memoized
 
 Queries are **globally** memoized. MoSearch is designed to be called liberally without affecting performance.
 
