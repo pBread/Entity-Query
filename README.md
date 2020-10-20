@@ -2,6 +2,15 @@
 yarn add mosearch
 ```
 
+- [Motivation](#motivation)
+- [Features](#features)
+  - [Queries](#queries)
+  - [Nested Queries](#nested-queries)
+  - [Regex](#regex)
+  - [Conditions](#conditions)
+  - [Memos](#memos)
+- [Example](#example)
+
 ## Motivation
 
 Searching/filtering/finding records is one of the most common frontend tasks. Yet, it remains one of the more tedious and cognitively heavy aspects of building an app.
@@ -49,7 +58,7 @@ Mo(records).search([{ name: "/purple/i" }, { description: "/purple/i" }], {
 Mo(records).search({ description: "/purple/i" }, { conditions: "none" }); // all records w/out "purple" in description
 ```
 
-#### Incremental & Global Caching
+#### Memos
 
 MoSearch is designed to be called _liberally_ across your app. Under the hood, incremetal [Memoization](https://en.wikipedia.org/wiki/Memoization) (specifically [weak](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) memoization) is used to cache (1) the "expensive" task of indexing a dataset and (2) each query result.
 
