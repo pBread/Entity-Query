@@ -2,7 +2,7 @@
 yarn add mosearch
 ```
 
-# Motivation
+## Motivation
 
 Searching/filtering/finding records is one of the most common frontend tasks. However, it remains one of the more tedious and cognitively heavy aspects of building an app.
 
@@ -34,9 +34,13 @@ Mo(records).search({ "/^.*/": { material: "wool" } }); // all records w/a nested
 #### Conditions
 
 ```js
-Mo(records).search([{ name: "/athletic/i" }, { description: "/athletic/i" }], {
+Mo(records).search([{ name: "/purple/i" }, { description: "/purple/i" }], {
   conditions: "any",
-});
+}); // any records w/"purple" in name or description
+
+Mo(records).search([{ name: "/purple/i" }, { description: "/purple/i" }], {
+  conditions: "none",
+}); // all records w/out "purple" in name or description
 ```
 
 #### Incremental & Global Caching
