@@ -9,7 +9,6 @@ yarn add mosearch
   - [Regex](#regex)
   - [Conditions](#conditions)
   - [Memos](#memos)
-- [Example](#example)
 
 ## Motivation
 
@@ -80,67 +79,3 @@ a === b;
 ```
 
 Thirdly, cache is global thus these benefits are enjoyed across your app.
-
-## Example
-
-Consider building a product catalog. An array of product records is fetched from an API and stored in state.
-
-```json5
-[
-  {
-    id: "1",
-    name: "Purple Dress Socks",
-    family: "Dress Socks",
-    description: "Really stylish dress socks. Great for businessing.",
-    availability: {
-      inStock: true,
-    },
-    metadata: { material: "wool" },
-  },
-  {
-    id: "2",
-    name: "White Running Socks",
-    family: "Athletic Socks",
-    description: "Breathable cotton running socks.",
-    availability: {
-      inStock: true,
-    },
-    metadata: { material: "cotton" },
-  },
-  // ... hundreds of records
-]
-```
-
-To filter all wool socks...
-
-```js
-import Mo from "mosearch";
-
-const woolSocks = Mo(records).filter({ metadata: { material: "wool" } });
-// Returns array of records
-// [
-//   {
-//     "id": "1",
-//     "name": "Purple Dress Socks",
-//     "family": "Dress Socks",
-//     "description": "Really stylish dress socks. Great for businessing.",
-//     "availability": {
-//       "inStock": true
-//     },
-//     "metadata": { "material": "wool" }
-//   }
-// ]
-```
-
-To search for products with "running" in the name or description...
-
-```js
-import Mo from "mosearch";
-
-const runningSocks = Mo(records).search(
-  [{ name: "/athletic/i" }, { description: "/athletic/i" }],
-  { conditions: "any" }
-);
-// Returns array of record ids
-// ["2"]
-```
