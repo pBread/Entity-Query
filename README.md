@@ -56,28 +56,28 @@ a === b;
 
 Consider building a product catalog. We start with an array of product records, like so...
 
-```json
+```json5
 [
   {
-    "id": "1",
-    "name": "Purple Dress Socks",
-    "family": "Dress Socks",
-    "description": "Really stylish dress socks. Great for businessing.",
-    "availability": {
-      "inStock": true
+    id: "1",
+    name: "Purple Dress Socks",
+    family: "Dress Socks",
+    description: "Really stylish dress socks. Great for businessing.",
+    availability: {
+      inStock: true,
     },
-    "metadata": { "material": "wool" }
+    metadata: { material: "wool" },
   },
   {
-    "id": "2",
-    "name": "White Running Socks",
-    "family": "Athletic Socks",
-    "description": "Breathable cotton running socks.",
-    "availability": {
-      "inStock": true
+    id: "2",
+    name: "White Running Socks",
+    family: "Athletic Socks",
+    description: "Breathable cotton running socks.",
+    availability: {
+      inStock: true,
     },
-    "metadata": { "material": "cotton" }
-  }
+    metadata: { material: "cotton" },
+  },
   // ... hundreds of records
 ]
 ```
