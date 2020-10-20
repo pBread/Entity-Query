@@ -70,7 +70,7 @@ export function search(docs, query, options) {
 }
 
 /****************************************************
- Get Ids from Index
+ Lookup Ids in Index
 ****************************************************/
 function getIn(docs, path, opts) {
   const index = getIndex(docs, path, opts);
@@ -106,7 +106,7 @@ function traverse(index, path) {
 }
 
 /****************************************************
- Index Docs
+ Build Index
 ****************************************************/
 function getIndex(docs, opts) {
   if (iCache.has(docs)) return iCache.get(docs);
