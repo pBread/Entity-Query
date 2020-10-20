@@ -38,7 +38,7 @@ Mo(records).search([{ name: "/athletic/i" }, { description: "/athletic/i" }], {
 
 ##### Memoized
 
-Queries are **globally** memoized. MoSearch is designed to be called liberally without affecting performance.
+Queries are **globally** memoized. MoSearch is designed to be called liberally across an app without affecting performance.
 
 ```js
 const a = Mo(records).search({ name: "Purple Socks" });
