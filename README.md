@@ -6,7 +6,7 @@ yarn add mosearch
 
 Searching/filtering/finding records is one of the most common frontend tasks. However, it remains one of the more tedious and cognitively heavy aspects of building an app.
 
-MoSearch is designed to allow developers to search/filter/find records in a simple, performant and unobtrusive manner.
+MoSearch allows developers to search/filter/find records in a simple, performant and unobtrusive manner.
 
 ## Features
 
@@ -36,9 +36,18 @@ Mo(records).search([{ name: "/athletic/i" }, { description: "/athletic/i" }], {
 });
 ```
 
-#### Memoized
+#### Incremental & Global Caching
 
-Queries are **globally** memoized. MoSearch is designed to be called liberally across an app without affecting performance.
+MoSearch is designed to be called _liberally_ across your app. Under the hood, incremetal [Memoization](https://en.wikipedia.org/wiki/Memoization) (specifically [weak](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) memoization) is used to cache (1) the "expensive" task of indexing a dataset and (2) each query result.
+
+Firstly, this means running multiple queries on a single dataset is extremely cheap.
+
+```js
+Mo(lotsOfRecords).search({ name: "Purple Socks" }); // "expensive" data indexing is cached
+Mo(lotsOfRecords).search({ metadata: { material: "wool" } }); // no indexing
+```
+
+Secondly, this means the same query will return the previous result, which is helpful to prevent rerendering.
 
 ```js
 const a = Mo(records).search({ name: "Purple Socks" });
@@ -47,6 +56,8 @@ const b = Mo(records).search({ name: "Purple Socks" });
 a === b;
 // true
 ```
+
+Third, this cache is global thus these benefits are enjoyed across your app.
 
 ## Example
 
