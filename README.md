@@ -57,7 +57,7 @@ a === b;
 // true
 ```
 
-Third, this cache is global thus these benefits are enjoyed across your app.
+Thirdly, this cache is global thus these benefits are enjoyed across your app.
 
 ## Example
 
