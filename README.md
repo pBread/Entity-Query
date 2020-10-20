@@ -1,8 +1,6 @@
 ```bash
 npm install mosearch
-```
 
-```bash
 yarn add mosearch
 ```
 
