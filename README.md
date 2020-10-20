@@ -28,7 +28,7 @@ Mo(records).search({ metadata: { material: "wool" } });
 Mo(records).search({ description: "/purple/i" }); // all records w/"purple" in description
 Mo(records).search({ "/^desc/i": "/purple/i" }); // all records w/"purple" in a property starting w/"desc"
 Mo(records).search({ "/^.*/i": "/purple/i" }); // all records w/"purple" in any property
-Mo(records).search({ "/^.*/": { material: "wool" } }); // any records w/a nested property "material" equal to "wool"
+Mo(records).search({ "/^.*/": { material: "wool" } }); // all records w/a nested property "material" equal to "wool"
 ```
 
 #### Conditions
