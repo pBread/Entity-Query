@@ -35,8 +35,16 @@ Mo(records).search({ "/^.*/": { material: "wool" } }); // all records w/a nested
 
 ```js
 Mo(records).search([{ name: "/purple/i" }, { description: "/purple/i" }], {
+  conditions: "all",
+}); // all records w/"purple" in name or description
+
+Mo(records).search([{ name: "/purple/i" }, { description: "/purple/i" }], {
   conditions: "any",
 }); // any records w/"purple" in name or description
+
+Mo(records).search([{ name: "/purple/i" }, { description: "/purple/i" }], {
+  conditions: "diff",
+}); // records with purple in name or description, but not both
 
 Mo(records).search({ description: "/purple/i" }, { conditions: "none" }); // all records w/out "purple" in description
 ```
