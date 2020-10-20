@@ -38,9 +38,7 @@ Mo(records).search([{ name: "/purple/i" }, { description: "/purple/i" }], {
   conditions: "any",
 }); // any records w/"purple" in name or description
 
-Mo(records).search([{ name: "/purple/i" }, { description: "/purple/i" }], {
-  conditions: "none",
-}); // all records w/out "purple" in name or description
+Mo(records).search({ description: "/purple/i" }, { conditions: "none" }); // all records w/out "purple" in description
 ```
 
 #### Incremental & Global Caching
