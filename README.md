@@ -78,7 +78,7 @@ Consider building a product catalog. We start with an array of product records, 
     },
     "metadata": { "material": "cotton" }
   }
-  // ... hundreds of records ... //
+  // ... hundreds of records
 ]
 ```
 
