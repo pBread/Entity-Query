@@ -10,7 +10,9 @@ yarn add mosearch
 
 # Motivation
 
-Searching/filtering/finding records is one of the most common frontend tasks. And yet, one of the most common causes of bugs and performance issues – especially w/frameworks like React where the UI is driven by state. MoSearch is designed to allow developers to search/filter/find records in a simple, performant and unobtrusive manner.
+Searching/filtering/finding records is one of the most common frontend tasks. And yet, one of the most common causes of bugs and performance issues – especially w/frameworks, like React, where the UI is driven from state.
+
+MoSearch is designed to allow developers to search/filter/find records in a simple, performant and unobtrusive manner.
 
 ## Features
 
@@ -42,7 +44,7 @@ Mo(records).search([{ name: "/athletic/i" }, { description: "/athletic/i" }], {
 
 #### Memoized
 
-MoSearch memoizes queries across your app. It is designed to be called liberally without impacting performance.
+Queries are memoized **globally**. MoSearch is designed to be called liberally without affecting performance.
 
 ```js
 const a = Mo(records).search({ name: "Purple Socks" });
