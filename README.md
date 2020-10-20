@@ -4,7 +4,7 @@ yarn add mosearch
 
 # Motivation
 
-Searching/filtering/finding records is one of the most common frontend tasks. And yet, one of the most common causes of bugs and performance issues – especially w/frameworks, like React, where the UI is driven from state.
+Searching/filtering/finding records is one of the most common frontend tasks. However, it remains one of the more tedious and cognitively heavy aspects of building an app.
 
 MoSearch is designed to allow developers to search/filter/find records in a simple, performant and unobtrusive manner.
 
