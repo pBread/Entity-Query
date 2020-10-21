@@ -82,30 +82,6 @@ Thirdly, cache is global thus these benefits are enjoyed across your app.
 
 ## Usage
 
-### Things that **Don't** Matter
+### What not to Worry About
 
-Secondly, the same query on the same dataset will return the same result, which is helpful to prevent rerendering.
-
-```js
-const a = Mo(records).search({ name: "Purple Socks" });
-const b = Mo(records).search({ name: "Purple Socks" });
-
-a === b;
-// true
-```
-
-Thirdly, cache is global thus these benefits are enjoyed across your app.
-
-### Things that **Do** Matter
-
-Secondly, the same query on the same dataset will return the same result, which is helpful to prevent rerendering.
-
-```js
-const a = Mo(records).search({ name: "Purple Socks" });
-const b = Mo(records).search({ name: "Purple Socks" });
-
-a === b;
-// true
-```
-
-Thirdly, cache is global thus these benefits are enjoyed across your app.
+### What to Worry About
