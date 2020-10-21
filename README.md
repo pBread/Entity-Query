@@ -10,8 +10,6 @@ yarn add mosearch
   - [Conditions](#conditions)
   - [Memos](#memos)
 - [Usage](#usage)
-  - [What Not to Worry About](#what-not-to-worry-about)
-  - [What to Worry About](#what-to-worry-about)
 
 ## Motivation
 

@@ -4,7 +4,7 @@ import isObj from "lodash.isplainobject";
 import mergeWith from "lodash.mergeWith";
 import hash from "object-hash";
 
-const iCache = new WeakMap();
+let iCache = new Map();
 const qCache = new WeakMap();
 
 /**
@@ -16,7 +16,7 @@ const qCache = new WeakMap();
  * @param { Object[] } docs - Array of JSON objects
  *
  * @param { Object } [options] - Default options. Can be overriden in method args.
- * @param { boolean } [options.cache=true] - Controls whether results are memoized. This is a low-level setting and should be disabled in rare circumstances only.
+ * @param { boolean | integer } [options.cache=10] - Controls how many
  * @param { string } [options.key="id"] - Indentifying key for docs
  * @param { ( "all" | "any" | "diff" | "none") } [options.conditions="all"] - Determines behavior of the query.
  */
@@ -127,7 +127,8 @@ function getIndex(docs, opts) {
   if (iCache.has(docs)) return iCache.get(docs);
 
   const docIndex = toIndex(docs, opts);
-  if (opts.cache) iCache.set(docs, docIndex);
+  setICache(docs, docIndex, opts);
+
   return docIndex;
 }
 
@@ -146,6 +147,7 @@ function toIndex(docs, opts) {
   function create(doc, id, path = []) {
     return Object.entries(doc).map(([key, val]) => {
       const obj = isObj(val) ? val : Array.isArray(val) ? { ...val } : null;
+
       if (obj) {
         if (!Object.keys(obj).length) return toObj([id], [...path, key, "{}"]);
         if (isObject(val)) return create(val, id, [...path, key]);
@@ -160,10 +162,21 @@ function toIndex(docs, opts) {
 /****************************************************
  Helpers
 ****************************************************/
+function setICache(key, value, opts) {
+  if (/false/i.test(opts.cache)) return null;
+
+  iCache = new Map(
+    [[key, value], ...[...iCache].filter(([k]) => k !== key)].slice(
+      0,
+      parseInt(opts.cache)
+    )
+  );
+}
+
 function toHash(item) {
-  if (Array.isArray(item))
-    return hash(item.join("__."), { algorithm: "md5", encoding: "base64" });
-  else return hash(item, { algorithm: "md5", encoding: "base64" });
+  const opts = { algorithm: "md5", encoding: "base64" };
+  if (Array.isArray(item)) return hash(item, opts);
+  else return hash(item, opts);
 }
 
 function toObj(value, path) {
@@ -176,7 +189,7 @@ function toObj(value, path) {
 
 function toOpts(options) {
   return {
-    cache: options?.cache ?? true,
+    cache: options?.cache ?? 10,
     conditions: options?.conditions || "all",
     key: options?.key || "id",
   };
