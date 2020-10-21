@@ -9,6 +9,9 @@ yarn add mosearch
   - [Regex](#regex)
   - [Conditions](#conditions)
   - [Memos](#memos)
+- [Usage](#usage)
+  - [What Not to Worry About](#what-not-to-worry-about)
+  - [What to Worry About](#what-to-worry-about)
 
 ## Motivation
 
@@ -82,6 +85,6 @@ Thirdly, cache is global thus these benefits are enjoyed across your app.
 
 ## Usage
 
-### What not to Worry About
+### What Not to Worry About
 
 ### What to Worry About
