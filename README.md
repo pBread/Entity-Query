@@ -84,7 +84,3 @@ a === b;
 Thirdly, cache is global thus these benefits are enjoyed across your app.
 
 ## Usage
-
-### What Not to Worry About
-
-### What to Worry About
