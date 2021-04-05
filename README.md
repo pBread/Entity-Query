@@ -65,11 +65,11 @@ Mo(records).search([{ name: "/purple/i" }, { description: "/purple/i" }], {
 Mo(records).search({ description: "/purple/i" }, { conditions: "none" }); // all records w/out "purple" in description
 ```
 
-#### Memos
+<!-- #### Memos
 
-MoSearch is designed to be used _liberally_ across your app. Under the hood, incremetal [Memoization](https://en.wikipedia.org/wiki/Memoization) (specifically [weak](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) memoization) is used to cache the "expensive" task of indexing a dataset.
+MoSearch is designed to be used _liberally_ across your app. Under the hood, a combination of incremental indexing and [memoization](https://en.wikipedia.org/wiki/Memoization) (specifically [weak](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) memoization) are used to minimize the
 
-Firstly, this makes it extremely cheap to run multiple queries on a dataset.
+Firstly, this makes it  cheap to run multiple queries on a dataset.
 
 ```js
 Mo(lotsOfRecords).search({ name: "Purple Socks" }); // "expensive" data indexing is cached
@@ -86,4 +86,4 @@ a === b;
 // true
 ```
 
-Thirdly, cache is global thus these benefits are enjoyed across your app.
+Thirdly, cache is global thus these benefits are enjoyed across your app. -->
