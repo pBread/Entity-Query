@@ -22,6 +22,8 @@ MoSearch allows developers to search/filter/find records in a simple, performant
 yarn add @breadman/mosearch
 ```
 
+## Usage
+
 #### Simple Query
 
 ```js
