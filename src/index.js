@@ -2,7 +2,6 @@ import difference from "lodash.difference";
 import intersection from "lodash.intersection";
 import isObj from "lodash.isplainobject";
 import mergeWith from "lodash.mergeWith";
-import hash from "object-hash";
 
 let iCache = new Map();
 const qCache = new WeakMap();
