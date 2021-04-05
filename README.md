@@ -13,7 +13,7 @@ MoSearch allows developers to search/filter/find records in a simple, performant
 
 ## Features
 
-- [x] Simple yet powerful record queries
+- [x] Powerful query capabilities: advanced conditions, nested properties, Regex
 - [x] Index-based searching (ideal for large data sets)
 - [x] Memory safe caching
 - [x] Memoized return values for simple equivalency checks (prevents unnecessary React re-renders)
