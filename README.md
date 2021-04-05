@@ -1,3 +1,5 @@
+# MoSearch
+
 MoSearch allows developers to search/filter/find records in a simple, performant and unobtrusive manner.
 
 - [Features](#features)
