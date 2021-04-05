@@ -1,25 +1,28 @@
-```bash
-yarn add @breadman/mosearch
-```
+MoSearch allows developers to search/filter/find records in a simple, performant and unobtrusive manner.
 
-- [Motivation](#motivation)
 - [Features](#features)
-  - [Queries](#queries)
+- [Install](#install)
+- [Usage](#usage)
+  - [Simple Query](#simple-query)
   - [Nested Queries](#nested-queries)
   - [Regex](#regex)
   - [Conditions](#conditions)
   - [Memos](#memos)
-- [Usage](#usage)
-
-## Motivation
-
-Searching/filtering/finding records is one of the most common frontend tasks. Yet, it remains one of the more tedious and cognitively heavy aspects of building an app.
-
-MoSearch allows developers to search/filter/find records in a simple, performant and unobtrusive manner.
 
 ## Features
 
-#### Queries
+- [x] Simple yet powerful record queries
+- [x] Index-based search, ideal for large data sets
+- [x] Memory safe caching
+- [x] Memoized return values for simple equivalency checks (prevents unnecessary React re-renders)
+
+## Install
+
+```bash
+yarn add @breadman/mosearch
+```
+
+#### Simple Query
 
 ```js
 Mo(records).search({ name: "Purple Socks" });
