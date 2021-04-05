@@ -63,7 +63,7 @@ Mo(records).search({ description: "/purple/i" }, { conditions: "none" }); // all
 
 #### Memos
 
-MoSearch is designed to be used _liberally_ across your app. Under the hood, incremetal [Memoization](https://en.wikipedia.org/wiki/Memoization) (specifically [weak](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) memoization) is used to cache (1) the "expensive" task of indexing a dataset and (2) each query result.
+MoSearch is designed to be used _liberally_ across your app. Under the hood, incremetal [Memoization](https://en.wikipedia.org/wiki/Memoization) (specifically [weak](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/WeakMap) memoization) is used to cache the "expensive" task of indexing a dataset.
 
 Firstly, this makes it extremely cheap to run multiple queries on a dataset.
 
