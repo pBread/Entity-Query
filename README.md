@@ -1,5 +1,5 @@
 ```bash
-yarn add mosearch
+yarn add @breadman/mosearch
 ```
 
 - [Motivation](#motivation)
@@ -10,8 +10,6 @@ yarn add mosearch
   - [Conditions](#conditions)
   - [Memos](#memos)
 - [Usage](#usage)
-  - [What Not to Worry About](#what-not-to-worry-about)
-  - [What to Worry About](#what-to-worry-about)
 
 ## Motivation
 
@@ -82,9 +80,3 @@ a === b;
 ```
 
 Thirdly, cache is global thus these benefits are enjoyed across your app.
-
-## Usage
-
-### What Not to Worry About
-
-### What to Worry About
