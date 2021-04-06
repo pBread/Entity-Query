@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "allowJs": true,
+    "baseUrl": ".",
+    "declaration": true,
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
+    "forceConsistentCasingInFileNames": true,
+    "lib": ["es2020"],
+    "module": "commonjs",
+    "noImplicitAny": true,
+    "outDir": "dist",
+    "resolveJsonModule": true,
+    "rootDir": "lib",
+    "skipLibCheck": true,
+    "strict": false,
+    "target": "es6"
+  },
+  "exclude": ["node_modules", "**/*.spec.ts"],
+  "include": ["./lib/**/*"]
+}
