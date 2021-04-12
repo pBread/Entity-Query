@@ -1,6 +1,6 @@
 # Entity Query
 
-Entity Query allows developers to query state records (entities) in a simple, performant and unobtrusive manner.
+Entity Query allows developers to query state entities in a simple, performant and unobtrusive manner.
 
 - [Features](#features)
 - [Install](#install)
@@ -13,9 +13,9 @@ Entity Query allows developers to query state records (entities) in a simple, pe
 
 ## Features
 
+- [x] Perform queries on normalized state entities
 - [x] Simple query language
-- [x] Advanced conditions
-- [x] Index-based searching (ideal for large data sets)
+- [x] Advanced query conditions
 
 ## Install
 
@@ -28,29 +28,29 @@ yarn add @breadman/entity-query
 #### Simple Query
 
 ```js
-EQ(records).search({ name: "Purple Socks" });
+EQ(products).search({ name: "Purple Socks" });
 ```
 
 #### Nested Queries
 
 ```js
-EQ(records).search({ metadata: { material: "wool" } });
+EQ(products).search({ metadata: { material: "wool" } });
 ```
 
 #### Conditions
 
 ```js
-EQ(records).search([{ name: "/purple/i" }, { description: "/purple/i" }], {
+EQ(products).search([{ name: "/purple/i" }, { description: "/purple/i" }], {
   conditions: "all",
-}); // all records w/"purple" in name or description
+}); // all products w/"purple" in name or description
 
-EQ(records).search([{ name: "/purple/i" }, { description: "/purple/i" }], {
+EQ(products).search([{ name: "/purple/i" }, { description: "/purple/i" }], {
   conditions: "any",
-}); // any records w/"purple" in name or description
+}); // any products w/"purple" in name or description
 
-EQ(records).search([{ name: "/purple/i" }, { description: "/purple/i" }], {
+EQ(products).search([{ name: "/purple/i" }, { description: "/purple/i" }], {
   conditions: "diff",
-}); // records with purple in name or description, but not both
+}); // products with purple in name or description, but not both
 
-EQ(records).search({ description: "/purple/i" }, { conditions: "none" }); // all records w/out "purple" in description
+EQ(products).search({ description: "/purple/i" }, { conditions: "none" }); // all products w/out "purple" in description
 ```
