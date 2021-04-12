@@ -64,8 +64,7 @@ function filter<T extends { [key: string]: R }, R extends Obj>(
   query: Query | Query[] | typeof ignore = ignore,
   opts: QueryOpts
 ): R[] {
-  const ids = search(entities, query, opts);
-  return ids.map((id) => entities[id]);
+  return search(entities, query, opts).map((id) => entities[id]);
 }
 
 /****************************************************
