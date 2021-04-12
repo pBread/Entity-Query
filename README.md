@@ -7,9 +7,7 @@ Entity Query allows developers to query state entities in a simple, performant a
 - [Usage](#usage)
   - [Simple Query](#simple-query)
   - [Nested Queries](#nested-queries)
-  - [Regex](#regex)
   - [Conditions](#conditions)
-  - [Memos](#memos)
 
 ## Features
 
