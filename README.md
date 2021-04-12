@@ -1,6 +1,6 @@
 # Entity Query
 
-Entity Query allows developers to peform queries against state entities in a simple & performant manner.
+Filtering & searching records is one of the most common (and tedious) tasks in web-development. Entity Query lets you query records in your store in a simple and performant manner.
 
 - [Features](#features)
 - [Install](#install)

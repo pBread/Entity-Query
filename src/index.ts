@@ -6,7 +6,7 @@ import mergeWith from "lodash.mergewith";
 /****************************************************
  Constants
 ****************************************************/
-const ignore = Symbol(); // used so ignores can be queried
+const ignore = Symbol(); // allows undefined query values to be used
 const indexMap = new WeakMap();
 
 /****************************************************
@@ -16,11 +16,13 @@ export function EntityQuery<T extends { [key: string]: R }, R extends Obj>(
   entities: T // normalized entities
 ) {
   return {
-    filter(query?: Query, options?: QueryOptions) {
-      return filter(entities, query, makeOptions(options));
+    filter(query?: Query, options?: QueryOptions): R[] {
+      return search(entities, query, makeOptions(options)).map(
+        (id) => entities[id]
+      );
     },
 
-    search(query?: Query, options?: QueryOptions) {
+    search(query?: Query, options?: QueryOptions): string[] {
       return search(entities, query, makeOptions(options));
     },
   };
@@ -35,7 +37,7 @@ function search<T extends { [key: string]: R }, R extends Obj>(
 
   const index =
     (indexMap.get(entities) as Index) ||
-    (indexMap.set(entities, buildIndex(entities)).get(entities) as Index);
+    (indexMap.set(entities, makeIndex(entities)).get(entities) as Index);
 
   const idSets = (Array.isArray(query) ? query : [query]).map((query) =>
     queryIndex(index, query)
@@ -49,7 +51,9 @@ function search<T extends { [key: string]: R }, R extends Obj>(
       return [...new Set(...idSets)];
 
     case "diff":
-      return difference(idSets[0], ...idSets.slice(1));
+      return idSets.length >= 2
+        ? difference(idSets[0], ...idSets.slice(1))
+        : [];
 
     case "none":
       return difference(Object.keys(entities), ...idSets);
@@ -59,22 +63,14 @@ function search<T extends { [key: string]: R }, R extends Obj>(
   }
 }
 
-function filter<T extends { [key: string]: R }, R extends Obj>(
-  entities: T,
-  query: Query | Query[] | typeof ignore = ignore,
-  opts: QueryOpts
-): R[] {
-  return search(entities, query, opts).map((id) => entities[id]);
-}
-
 /****************************************************
  Index Builder
 ****************************************************/
-function buildIndex<T extends { [key: string]: R }, R extends Obj>(
+function makeIndex<T extends { [key: string]: R }, R extends Obj>(
   root: T
 ): Index {
   return Object.values(root)
-    .flatMap((rec) => buildRecordIndex(rec))
+    .flatMap((rec) => makeRecordIndex(rec))
     .reduce(
       (acc, cur) =>
         mergeWith(acc, cur, (a, b) => {
@@ -84,16 +80,16 @@ function buildIndex<T extends { [key: string]: R }, R extends Obj>(
     );
 }
 
-function buildRecordIndex<R extends Obj>(rec: R) {
-  return buildIndexPaths(rec).map((path) =>
+function makeRecordIndex<R extends Obj>(rec: R) {
+  return makeIndexPaths(rec).map((path) =>
     buildNestedObject([rec.id], path.split("__."))
   );
 }
 
-function buildIndexPaths({ id, ...obj }: Obj, acc?: string): string[] {
+function makeIndexPaths({ id, ...obj }: Obj, acc?: string): string[] {
   return Object.entries(obj).flatMap(([key, val]) =>
     isObj(val)
-      ? buildIndexPaths(val, maybeJoin(key, acc))
+      ? makeIndexPaths(val, maybeJoin(key, acc))
       : maybeJoin(`${key}__.${val}`, acc)
   );
 }
@@ -103,7 +99,7 @@ function buildIndexPaths({ id, ...obj }: Obj, acc?: string): string[] {
 ****************************************************/
 function queryIndex(index: Index, query: Query): string[] {
   return intersection(
-    ...buildQueryPaths(query).map((queryPath) =>
+    ...makeQueryPaths(query).map((queryPath) =>
       traverseIndex(
         index,
         Object.keys(queryPath)[0].split("__."),
@@ -113,10 +109,10 @@ function queryIndex(index: Index, query: Query): string[] {
   );
 }
 
-function buildQueryPaths(query: Query, acc?: string): QueryPath[] {
+function makeQueryPaths(query: Query, acc?: string): QueryPath[] {
   return Object.keys(query).flatMap((key) =>
     isObj(query[key])
-      ? buildQueryPaths(query[key], maybeJoin(key, acc))
+      ? makeQueryPaths(query[key], maybeJoin(key, acc))
       : { [maybeJoin(key, acc)]: query[key] }
   );
 }
