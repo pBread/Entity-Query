@@ -58,10 +58,39 @@ EQ(products).search({ description: "/purple/i" }, { conditions: "none" }); // al
 
 ```jsx
 import EQ from "@breadman/entity-query";
+import { useSelector } from "react-redux";
 
 function PresidentsList({ lastName = "Roosevelt" }) {
   const eq = EQ(useSelector((state) => state.entities.presidents));
   const presidents = eq.filter({ lastName });
+
+  return (
+    <ul>
+      {presidents.map((record) => (
+        <li key={record.id}>
+          {record.firstName} {record.lastName}
+        </li>
+      ))}
+    </ul>
+  );
+}
+```
+
+#### With React Query
+
+```jsx
+import EQ from "@breadman/entity-query";
+import { useQuery } from "react-query";
+
+function PresidentsList({ lastName = "Roosevelt" }) {
+  const { isLoading, data } = useQuery("presidents", () =>
+    fetch("https://example.com/api/us-presidents")
+      .then((res) => res.json())
+      .then((arr) => arr.reduce((acc, cur) => ({ ...acc, [cur.id]: cur }), {}))
+  );
+
+  const eq = isLoading ? EQ(data) : null;
+  const presidents = eq?.filter({ lastName });
 
   return (
     <ul>
