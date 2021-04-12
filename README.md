@@ -8,6 +8,7 @@ Entity Query allows developers to query state entities in a simple, performant a
   - [Simple Query](#simple-query)
   - [Nested Queries](#nested-queries)
   - [Conditions](#conditions)
+  - [With Redux](#with-redux)
 
 ## Features
 
@@ -51,4 +52,25 @@ EQ(products).search([{ name: "/purple/i" }, { description: "/purple/i" }], {
 }); // products with purple in name or description, but not both
 
 EQ(products).search({ description: "/purple/i" }, { conditions: "none" }); // all products w/out "purple" in description
+```
+
+#### With Redux
+
+```jsx
+import EQ from "@breadman/entity-query";
+
+function PresidentsList({ lastName = "Roosevelt" }) {
+  const eq = EQ(useSelector((state) => state.entities.presidents));
+  const presidents = eq.filter({ lastName });
+
+  return (
+    <ul>
+      {presidents.map((record) => (
+        <li key={record.id}>
+          {record.firstName} {record.lastName}
+        </li>
+      ))}
+    </ul>
+  );
+}
 ```
