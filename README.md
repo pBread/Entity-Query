@@ -87,14 +87,11 @@ import EQ from "@breadman/entity-query";
 import { useQuery } from "react-query";
 
 function PresidentsList({ lastName = "Roosevelt" }) {
-  const { isLoading, data } = useQuery(
-    "presidents",
-    () =>
-      fetch("https://example.com/api/us-presidents")
-        .then((res) => res.json())
-        .then((data) =>
-          data.reduce((acc, cur) => ({ ...acc, [cur.id]: cur }), {})
-        ) // must be serialized (i.e. `{ [record.id]: record }`)
+  const { isLoading, data } = useQuery("presidents", () =>
+    fetch("https://example.com/api/us-presidents")
+      .then((res) => res.json())
+      // must serialize entities
+      .then((arr) => arr.reduce((acc, cur) => ({ ...acc, [cur.id]: cur }), {}))
   );
 
   const eq = isLoading ? EQ(data) : null;
