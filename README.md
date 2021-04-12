@@ -1,6 +1,6 @@
 # Entity Query
 
-Entity Query allows developers to query state entities in a simple, performant and unobtrusive manner.
+Entity Query allows developers to peform queries against state entities in a simple & performant manner.
 
 - [Features](#features)
 - [Install](#install)
