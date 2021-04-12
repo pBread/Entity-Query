@@ -8,7 +8,9 @@ Entity Query allows developers to query state entities in a simple, performant a
   - [Simple Query](#simple-query)
   - [Nested Queries](#nested-queries)
   - [Conditions](#conditions)
+- [Examples](#examples)
   - [With Redux](#with-redux)
+  - [With Redux](#with-react-query)
 
 ## Features
 
@@ -53,6 +55,8 @@ EQ(products).search([{ name: "/purple/i" }, { description: "/purple/i" }], {
 
 EQ(products).search({ description: "/purple/i" }, { conditions: "none" }); // all products w/out "purple" in description
 ```
+
+### Examples
 
 #### With Redux
 
