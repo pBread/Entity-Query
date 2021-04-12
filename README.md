@@ -17,6 +17,7 @@ Entity Query allows developers to query state entities in a simple, performant a
 - [x] Perform queries on serialized (i.e. `{ [record.id]: record }`) state entities
 - [x] Simple query language
 - [x] Advanced query conditions
+- [x] Only weak internal caching for memory safety
 
 ## Install
 
