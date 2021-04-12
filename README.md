@@ -94,8 +94,8 @@ function PresidentsList({ lastName = "Roosevelt" }) {
       .then((arr) => arr.reduce((acc, cur) => ({ ...acc, [cur.id]: cur }), {}))
   );
 
-  const eq = isLoading ? EQ(data) : null;
-  const presidents = eq?.filter({ lastName });
+  const eq = EQ(isLoading ? {} : data);
+  const presidents = eq.filter({ lastName });
 
   return (
     <ul>
