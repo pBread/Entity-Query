@@ -11,7 +11,7 @@ Entity Query allows developers to query state entities in a simple, performant a
 
 ## Features
 
-- [x] Perform queries on normalized state entities
+- [x] Perform queries on normalized (i.e. `{[record.id]: record}`) state entities
 - [x] Simple query language
 - [x] Advanced query conditions
 
