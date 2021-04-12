@@ -10,7 +10,7 @@ Entity Query allows developers to query state entities in a simple, performant a
   - [Conditions](#conditions)
 - [Examples](#examples)
   - [With Redux](#with-redux)
-  - [With Redux](#with-react-query)
+  - [With React Query](#with-react-query)
 
 ## Features
 
