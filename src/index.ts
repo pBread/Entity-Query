@@ -16,6 +16,10 @@ export function EntityQuery<T extends { [key: string]: R }, R extends Obj>(
   entities: T // normalized entities
 ) {
   return {
+    filter(query?: Query, options?: QueryOptions) {
+      return filter(entities, query, makeOptions(options));
+    },
+
     search(query?: Query, options?: QueryOptions) {
       return search(entities, query, makeOptions(options));
     },
@@ -45,11 +49,23 @@ function search<T extends { [key: string]: R }, R extends Obj>(
       return [...new Set(...idSets)];
 
     case "diff":
+      return difference(idSets[0], ...idSets.slice(1));
+
+    case "none":
       return difference(Object.keys(entities), ...idSets);
 
     default:
       return intersection(...idSets);
   }
+}
+
+function filter<T extends { [key: string]: R }, R extends Obj>(
+  entities: T,
+  query: Query | Query[] | typeof ignore = ignore,
+  opts: QueryOpts
+): R[] {
+  const ids = search(entities, query, opts);
+  return ids.map((id) => entities[id]);
 }
 
 /****************************************************
@@ -131,7 +147,7 @@ interface Index {
 type Obj = { id: string; [key: string]: any };
 export type Query = { [key: string]: any };
 type QueryPath = { [key: string]: boolean | number | string };
-type QueryOptions = { conditions?: "all" | "any" | "diff" };
+type QueryOptions = { conditions?: "all" | "any" | "diff" | "none" };
 type QueryOpts = ReturnType<typeof makeOptions>;
 
 function makeOptions(options?: QueryOptions) {
