@@ -21,6 +21,6 @@
     "build": "microbundle",
     "watch": "microbundle watch"
   },
-  "source": "lib/index.ts",
+  "source": "src/index.ts",
   "version": "0.0.0"
 }
