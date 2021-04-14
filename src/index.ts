@@ -122,14 +122,29 @@ function traverseIndex(
   path: string[],
   value: boolean | number | string
 ): string[] {
-  if (!path.length) return index[`${value}`] as string[];
+  // empty path marks end of traversal
+  if (!path.length) {
+    if (isRegStr(value)) {
+      const matchedKeys = matchKeysWRegExp(index, strToReg(value as string));
+      return matchedKeys.map((key) => index[key]).flat() as string[];
+    } else return index[`${value}`] as string[];
+  }
 
   const [cur, ..._path] = path;
-  const _index = index[cur];
+
+  if (isRegStr(cur)) {
+    const matchedKeys = matchKeysWRegExp(index, strToReg(cur));
+    if (!matchedKeys.length) return [];
+
+    var _index = matchedKeys.reduce(
+      (acc: Index, key) => ({ ...acc, [key]: index[key] }),
+      {}
+    );
+  } else var _index = index[cur] as Index;
 
   if (!_index) return [];
 
-  return traverseIndex(_index as Index, _path, value);
+  return traverseIndex(_index, _path, value);
 }
 
 /****************************************************
@@ -165,4 +180,23 @@ function maybeJoin(
   b: typeof ignore | boolean | number | string = ignore
 ) {
   return b === ignore ? `${a}` : `${b}__.${a}`;
+}
+
+function isRegStr(it: any) {
+  try {
+    if (typeof it === "string") return !!strToReg(it as string);
+    return false;
+  } catch {
+    return false;
+  }
+}
+
+function matchKeysWRegExp(obj: Index, re: RegExp): string[] {
+  return Object.keys(obj).filter((key) => re.test(key));
+}
+
+function strToReg(str: string) {
+  const pattern = str.slice(1, str.lastIndexOf("/"));
+  const opts = str.slice(str.lastIndexOf("/") + 1);
+  return new RegExp(pattern, opts);
 }
