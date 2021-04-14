@@ -123,12 +123,11 @@ function traverseIndex(
   value: boolean | number | string
 ): string[] {
   // empty path marks end of traversal
-  if (!path.length) {
+  if (!path.length)
     if (isRegStr(value)) {
       const matchedKeys = matchKeysWRegExp(index, strToReg(value as string));
       return matchedKeys.map((key) => index[key]).flat() as string[];
     } else return index[`${value}`] as string[];
-  }
 
   const [cur, ..._path] = path;
 
