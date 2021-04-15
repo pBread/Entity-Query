@@ -19,6 +19,7 @@ Filtering & searching records is one of the most common (and tedious) tasks in w
 
 - [x] Perform queries on serialized (i.e. `{ [record.id]: record }`) state entities
 - [x] Simple query language
+- [x] Supports Regular Expressions
 - [x] Advanced query conditions
 - [x] All internal cache is memory safe
 
