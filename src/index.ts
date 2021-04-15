@@ -62,7 +62,7 @@ function search<T extends { [key: string]: R }, R extends Obj>(
       return difference(Object.keys(entities), ...idSets);
 
     default:
-      return intersection(...idSets);
+      throw Error(`Invalid Query Conditon: ${opts.conditions}`);
   }
 }
 
