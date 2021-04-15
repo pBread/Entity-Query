@@ -5,9 +5,12 @@ Filtering & searching records is one of the most common (and tedious) tasks in w
 - [Features](#features)
 - [Install](#install)
 - [Usage](#usage)
+
   - [Simple Query](#simple-query)
+  - [RegExp] (#regexp)
   - [Nested Queries](#nested-queries)
   - [Conditions](#conditions)
+
 - [Examples](#examples)
   - [With Redux](#with-redux)
   - [With React Query](#with-react-query)
@@ -33,10 +36,22 @@ yarn add @breadman/entity-query
 EQ(products).search({ name: "Purple Socks" });
 ```
 
+#### RegExp
+
+```js
+EQ(products).search({ name: "/purple/i" });
+// all products w/"purple" in name
+```
+
 #### Nested Queries
 
 ```js
 EQ(products).search({ metadata: { material: "wool" } });
+```
+
+```js
+EQ(products).search({ "/^*./i": { material: "wool" } });
+// return all products with a nested object that has { material: "wool" }
 ```
 
 #### Conditions
