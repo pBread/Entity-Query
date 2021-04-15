@@ -126,23 +126,23 @@ function traverseIndex(
 ): string[] {
   // empty path marks end of traversal
   if (!path.length)
-    if (isRegStr(value)) {
-      const matchedKeys = matchKeysWRegExp(index, strToReg(value as string));
-      return matchedKeys.map((key) => index[key]).flat() as string[];
-    } else return index[`${value}`] as string[];
+    if (isRegStr(value))
+      return matchKeysWRegExp(index, strToReg(value as string))
+        .map((key) => index[key])
+        .flat() as string[];
+    else return index[`${value}`] as string[];
 
   const [cur, ..._path] = path;
 
-  let _index: Index;
-  if (isRegStr(cur)) {
-    const matchedKeys = matchKeysWRegExp(index, strToReg(cur));
-    if (!matchedKeys.length) return [];
-
-    _index = matchedKeys.reduce(
-      (acc: Index, key) => ({ ...acc, ...((index[key] as Index) || {}) }),
-      {}
-    );
-  } else _index = index[cur] as Index;
+  const _index = isRegStr(cur)
+    ? matchKeysWRegExp(index, strToReg(cur)).reduce(
+        (acc: Index, key) => ({
+          ...acc,
+          ...((index[key] as Index) || {}),
+        }),
+        {}
+      )
+    : (index[cur] as Index);
 
   if (!_index) return [];
 
