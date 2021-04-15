@@ -50,7 +50,7 @@ EQ(products).search({ metadata: { material: "wool" } });
 ```
 
 ```js
-EQ(products).search({ "/^*./i": { material: "wool" } });
+EQ(products).search({ "/^.*/g": { material: "wool" } });
 // return all products with a nested object that has { material: "wool" }
 ```
 
