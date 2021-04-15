@@ -157,11 +157,12 @@ interface Index {
   [key: string]: Index | string[];
 }
 
-type Obj = { id: string; [key: string]: any };
 export type Query = { [key: string]: any };
-type QueryPath = { [key: string]: boolean | number | string };
-type QueryOptions = { conditions?: "all" | "any" | "diff" | "none" };
+export type QueryOptions = { conditions?: "all" | "any" | "diff" | "none" };
+
+type Obj = { id: string; [key: string]: any };
 type QueryOpts = ReturnType<typeof makeOptions>;
+type QueryPath = { [key: string]: boolean | number | string };
 
 function makeOptions(options?: QueryOptions) {
   return { conditions: options?.conditions };
