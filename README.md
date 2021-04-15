@@ -7,7 +7,7 @@ Filtering & searching records is one of the most common (and tedious) tasks in w
 - [Usage](#usage)
 
   - [Simple Query](#simple-query)
-  - [RegExp] (#regexp)
+  - [RegExp](#regexp)
   - [Nested Queries](#nested-queries)
   - [Conditions](#conditions)
 
