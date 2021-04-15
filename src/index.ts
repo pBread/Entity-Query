@@ -12,7 +12,10 @@ const indexMap = new WeakMap();
 /****************************************************
  Main
 ****************************************************/
-function EntityQuery<T extends { [key: string]: R }, R extends Obj>(
+export default function EntityQuery<
+  T extends { [key: string]: R },
+  R extends Obj
+>(
   entities: T // normalized entities
 ) {
   return {
@@ -27,8 +30,6 @@ function EntityQuery<T extends { [key: string]: R }, R extends Obj>(
     },
   };
 }
-
-export default EntityQuery;
 
 function search<T extends { [key: string]: R }, R extends Obj>(
   entities: T,
