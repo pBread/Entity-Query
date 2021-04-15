@@ -28,7 +28,7 @@ export function EntityQuery<T extends { [key: string]: R }, R extends Obj>(
   };
 }
 
-export default EntityQuery;
+export default EntityQuery
 
 function search<T extends { [key: string]: R }, R extends Obj>(
   entities: T,

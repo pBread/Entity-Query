@@ -7,6 +7,7 @@ export declare function EntityQuery<T extends {
     filter(query?: Query, options?: QueryOptions): R[];
     search(query?: Query, options?: QueryOptions): string[];
 };
+export default EntityQuery;
 declare type Obj = {
     id: string;
     [key: string]: any;
@@ -17,4 +18,3 @@ export declare type Query = {
 declare type QueryOptions = {
     conditions?: "all" | "any" | "diff" | "none";
 };
-export {};
