@@ -1,7 +1,7 @@
 /****************************************************
  Main
 ****************************************************/
-export declare function EntityQuery<T extends {
+declare function EntityQuery<T extends {
     [key: string]: R;
 }, R extends Obj>(entities: T): {
     filter(query?: Query, options?: QueryOptions): R[];
