@@ -131,15 +131,16 @@ function traverseIndex(
 
   const [cur, ..._path] = path;
 
+  let _index: Index;
   if (isRegStr(cur)) {
     const matchedKeys = matchKeysWRegExp(index, strToReg(cur));
     if (!matchedKeys.length) return [];
 
-    var _index = matchedKeys.reduce(
-      (acc: Index, key) => ({ ...acc, [key]: index[key] }),
+    _index = matchedKeys.reduce(
+      (acc: Index, key) => ({ ...acc, ...((index[key] as Index) || {}) }),
       {}
     );
-  } else var _index = index[cur] as Index;
+  } else _index = index[cur] as Index;
 
   if (!_index) return [];
 
@@ -174,13 +175,6 @@ function buildNestedObject(value: any, path: string[]) {
   );
 }
 
-function maybeJoin(
-  a: boolean | number | string,
-  b: typeof ignore | boolean | number | string = ignore
-) {
-  return b === ignore ? `${a}` : `${b}__.${a}`;
-}
-
 function isRegStr(it: any) {
   try {
     if (typeof it === "string") return !!strToReg(it as string);
@@ -188,6 +182,13 @@ function isRegStr(it: any) {
   } catch {
     return false;
   }
+}
+
+function maybeJoin(
+  a: boolean | number | string,
+  b: typeof ignore | boolean | number | string = ignore
+) {
+  return b === ignore ? `${a}` : `${b}__.${a}`;
 }
 
 function matchKeysWRegExp(obj: Index, re: RegExp): string[] {
