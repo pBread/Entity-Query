@@ -133,9 +133,9 @@ function traverseIndex(
         .flat() as string[];
     else return index[`${value}`] as string[];
 
-  const [cur, ..._path] = path;
+  const [cur, ...nextPath] = path;
 
-  const _index = isRegStr(cur)
+  const nextIndex = isRegStr(cur)
     ? matchKeysWRegExp(index, strToReg(cur)).reduce(
         (acc: Index, key) => ({
           ...acc,
@@ -145,9 +145,9 @@ function traverseIndex(
       )
     : (index[cur] as Index);
 
-  if (!_index) return [];
+  if (!nextIndex) return [];
 
-  return traverseIndex(_index, _path, value);
+  return traverseIndex(nextIndex, nextPath, value);
 }
 
 /****************************************************
