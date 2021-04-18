@@ -165,7 +165,7 @@ type QueryOpts = ReturnType<typeof makeOptions>;
 type QueryPath = { [key: string]: boolean | number | string };
 
 function makeOptions(options?: QueryOptions) {
-  return { conditions: options?.conditions };
+  return { conditions: options?.conditions || "all" };
 }
 
 /****************************************************
