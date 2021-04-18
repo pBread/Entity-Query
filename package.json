@@ -22,6 +22,7 @@
   ],
   "license": "MIT",
   "main": "dist/index.js",
+  "module": "dist/index.esm.js",
   "name": "@breadman/entity-query",
   "publishConfig": {
     "access": "public"
@@ -32,5 +33,5 @@
   },
   "source": "src/index.ts",
   "unpkg": "dist/index.umd.js",
-  "version": "0.0.6"
+  "version": "0.0.7"
 }
