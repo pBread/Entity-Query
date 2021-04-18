@@ -1,6 +1,6 @@
 # Entity Query
 
-Filtering & searching records is one of the most common (and tedious) tasks in web-development. Entity Query lets you query records in your store in a simple and performant manner.
+Filtering & searching records is one of the most common (and tedious) tasks in web-development. Entity Query allows you to retrieve records from your store w/simple & perfomant queries.
 
 - [Features](#features)
 - [Install](#install)
