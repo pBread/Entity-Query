@@ -9,9 +9,10 @@ Filtering & searching records is one of the most common (and tedious) tasks in w
   - [Nested Queries](#nested-queries)
   - [RegExp](#regexp)
   - [Conditions](#conditions)
-- [Examples](#examples)
   - [With Redux](#with-redux)
   - [With React Query](#with-react-query)
+- [Examples](#examples)
+  - [Copy-Paste Example](#copy-paste-example)
 
 ## Features
 
@@ -122,6 +123,8 @@ function PresidentsList({ lastName = "Roosevelt" }) {
 ```
 
 ### Examples
+
+#### Copy-Paste Example
 
 ```js
 import EQ from "@breadman/entity-query";
