@@ -70,17 +70,15 @@ EQ(products).search([{ name: "/purple/i" }, { description: "/purple/i" }], {
 EQ(products).search({ description: "/purple/i" }, { conditions: "none" }); // all products w/out "purple" in description
 ```
 
-### Examples
-
 #### With Redux
 
 ```jsx
 import EQ from "@breadman/entity-query";
 import { useSelector } from "react-redux";
 
-function PresidentsList({ lastName = "Roosevelt" }) {
+function PresidentsList({ name = "Theodore Roosevelt" }) {
   const eq = EQ(useSelector((state) => state.entities.presidents));
-  const presidents = eq.filter({ lastName });
+  const presidents = eq.filter({ name });
 
   return (
     <ul>
@@ -121,4 +119,57 @@ function PresidentsList({ lastName = "Roosevelt" }) {
     </ul>
   );
 }
+```
+
+### Examples
+
+```js
+import EQ from "@breadman/entity-query";
+
+const state = {
+  entities: {
+    presidents: {
+      16: {
+        firstName: "Abraham",
+        id: "16",
+        lastName: "Lincoln",
+        party: "Republican Party",
+      },
+      26: {
+        firstName: "Theodore",
+        id: "26",
+        lastName: "Roosevelt",
+        party: "Republican Party",
+      },
+      32: {
+        firstName: "Franklin",
+        id: "32",
+        lastName: "Roosevelt",
+        party: "Democratic Party",
+      },
+    },
+  },
+};
+
+const eq = EQ(state.entities.presidents);
+
+console.log("Roosevelt Ids: ", eq.search({ lastName: "/roosevelt/gi" }));
+// Roosevelt Ids: ["26","32"]
+
+console.log("Republican Records: ", eq.filter({ party: "Republican Party" }));
+// Republican Records:
+// [
+//   {
+//     firstName: "Abraham",
+//     id: "16",
+//     lastName: "Lincoln",
+//     party: "Republican Party",
+//   },
+//   {
+//     firstName: "Theodore",
+//     id: "26",
+//     lastName: "Roosevelt",
+//     party: "Republican Party",
+//   },
+// ];
 ```
