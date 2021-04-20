@@ -157,10 +157,9 @@ const state = {
 const eq = EQ(state.entities.presidents);
 
 console.log("Roosevelt Ids: ", eq.search({ lastName: "/roosevelt/gi" }));
-// Roosevelt Ids: ["26","32"]
+// ["26","32"]
 
 console.log("Republican Records: ", eq.filter({ party: "Republican Party" }));
-// Republican Records:
 // [
 //   {
 //     firstName: "Abraham",

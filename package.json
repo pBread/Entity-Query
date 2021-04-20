@@ -27,11 +27,15 @@
   "publishConfig": {
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/pBread/Entity-Query.git"
+  },
   "scripts": {
     "build": "microbundle",
     "watch": "microbundle watch"
   },
   "source": "src/index.ts",
   "unpkg": "dist/index.umd.js",
-  "version": "0.0.9"
+  "version": "0.0.10"
 }
