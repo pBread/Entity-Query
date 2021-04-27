@@ -32,10 +32,11 @@
     "url": "https://github.com/pBread/Entity-Query.git"
   },
   "scripts": {
-    "build": "microbundle",
+    "build": "microbundle --name entityQuery",
     "watch": "microbundle watch"
   },
   "source": "src/index.ts",
   "unpkg": "dist/index.umd.js",
+  "types": "dist/index.d.ts",
   "version": "0.0.11"
 }
