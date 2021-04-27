@@ -3,9 +3,6 @@ import intersection from "lodash.intersection";
 import isObj from "lodash.isplainobject";
 import mergeWith from "lodash.mergewith";
 
-/****************************************************
- Constants
-****************************************************/
 const ignore = Symbol(); // allows undefined query values to be used
 const indexMap = new WeakMap();
 
