@@ -44,11 +44,11 @@ function search<T extends { [key: string]: R }, R extends Obj>(
   );
 
   switch (opts.conditions) {
-    case "all":
-      return intersection(...idSets);
-
     case "any":
       return [...new Set(...idSets)];
+
+    case "all":
+      return intersection(...idSets);
 
     case "diff":
       return idSets.length >= 2
