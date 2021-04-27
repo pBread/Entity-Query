@@ -156,10 +156,10 @@ const state = {
 
 const eq = EQ(state.entities.presidents);
 
-console.log("Roosevelt Ids: ", eq.search({ lastName: "/roosevelt/gi" }));
+console.log(eq.search({ lastName: "/roosevelt/gi" }));
 // ["26","32"]
 
-console.log("Republican Records: ", eq.filter({ party: "Republican Party" }));
+console.log(eq.filter({ party: "Republican Party" }));
 // [
 //   {
 //     firstName: "Abraham",
