@@ -4,6 +4,8 @@ Filtering & searching records is one of the most common (and tedious) tasks in w
 
 [Demo & Query-Builder](https://entity-query-builder.vercel.app/)
 
+## Table of Contents
+
 - [Features](#features)
 - [Install](#install)
 - [Usage](#usage)
