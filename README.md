@@ -10,6 +10,7 @@ Filtering & searching records is one of the most common (and tedious) tasks in w
   - [Simple Query](#simple-query)
   - [Nested Queries](#nested-queries)
   - [RegExp](#regexp)
+  - [Multiple Query Properties](#multiple-query-properties)
   - [Conditions](#conditions)
   - [With Redux](#with-redux)
   - [With React Query](#with-react-query)
@@ -34,43 +35,51 @@ yarn add @breadman/entity-query
 #### Simple Query
 
 ```js
-EQ(products).search({ name: "Purple Socks" });
+EQ(presidents).search({ party: "Democratic" });
 ```
 
 #### Nested Queries
 
 ```js
-EQ(products).search({ metadata: { material: "wool" } });
+EQ(presidents).search({ vice: { lastName: "Johnson" } });
 ```
 
 #### RegExp
 
 ```js
-EQ(products).search({ name: "/purple/i" });
-// all products w/"purple" in name
+EQ(presidents).search({ party: "/Democrat/gi" });
 ```
 
 ```js
-EQ(products).search({ "/^.*/g": { material: "wool" } });
-// return all products with a nested object that has { material: "wool" }
+EQ(presidents).search({ vice: { "/(.*?)/gi": "/John/" } });
+```
+
+#### Multiple Query Properties
+
+```js
+EQ(presidents).search({ term: { startDay: "Thursday", endDay: "Saturday" } });
 ```
 
 #### Conditions
 
 ```js
-EQ(products).search([{ name: "/purple/i" }, { description: "/purple/i" }], {
-  conditions: "all",
-}); // all products w/"purple" in name or description
+EQ(presidents).search(
+  [{ term: { startDay: "Thursday" } }, { term: { endDay: "Saturday" } }],
+  { conditions: "all" }
+);
 
-EQ(products).search([{ name: "/purple/i" }, { description: "/purple/i" }], {
-  conditions: "any",
-}); // any products w/"purple" in name or description
+EQ(presidents).search(
+  [{ term: { startDay: "Thursday" } }, { term: { endDay: "Saturday" } }],
+  { conditions: "any" }
+);
 
-EQ(products).search([{ name: "/purple/i" }, { description: "/purple/i" }], {
+EQ(presidents).search([{ party: "/Democrat/gi" }, { party: "Democratic" }], {
   conditions: "diff",
-}); // products with purple in name or description, but not both
+});
 
-EQ(products).search({ description: "/purple/i" }, { conditions: "none" }); // all products w/out "purple" in description
+EQ(presidents).search([{ party: "Republican" }, { party: "Democratic" }], {
+  conditions: "none",
+});
 ```
 
 #### With Redux
