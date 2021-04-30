@@ -10,8 +10,8 @@ Filtering & searching records is one of the most common (and tedious) tasks in w
 - [Install](#install)
 - [Usage](#usage)
   - [Simple Query](#simple-query)
-  - [Nested Queries](#nested-queries)
   - [RegExp](#regexp)
+  - [Nested Queries](#nested-queries)
   - [Multiple Query Properties](#multiple-query-properties)
   - [Conditions](#conditions)
   - [With Redux](#with-redux)
@@ -40,16 +40,16 @@ yarn add @breadman/entity-query
 EQ(presidents).search({ party: "Democratic" });
 ```
 
-#### Nested Queries
-
-```js
-EQ(presidents).search({ vice: { lastName: "Johnson" } });
-```
-
 #### RegExp
 
 ```js
 EQ(presidents).search({ party: "/Democrat/gi" });
+```
+
+#### Nested Queries
+
+```js
+EQ(presidents).search({ vice: { lastName: "Johnson" } });
 ```
 
 ```js
