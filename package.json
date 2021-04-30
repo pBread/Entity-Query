@@ -38,5 +38,5 @@
   "source": "src/index.ts",
   "unpkg": "dist/index.umd.js",
   "types": "dist/index.d.ts",
-  "version": "0.0.12"
+  "version": "0.0.13"
 }
