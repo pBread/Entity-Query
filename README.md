@@ -29,7 +29,7 @@ yarn add @breadman/entity-query
 
 ## Usage
 
-Try out queries w/[Entity-Query-Builder](https://entity-query-builder.vercel.app/).
+Use the [Entity-Query-Builder](https://entity-query-builder.vercel.app/) to test query syntax.
 
 #### Simple Query
 
