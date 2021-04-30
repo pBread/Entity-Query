@@ -2,6 +2,8 @@
 
 Filtering & searching records is one of the most common (and tedious) tasks in web-development. Entity Query allows you to retrieve records from your store w/simple & perfomant queries.
 
+[Demo & Query-Builder](https://entity-query-builder.vercel.app/)
+
 - [Features](#features)
 - [Install](#install)
 - [Usage](#usage)
@@ -28,8 +30,6 @@ yarn add @breadman/entity-query
 ```
 
 ## Usage
-
-Use the [Entity-Query-Builder](https://entity-query-builder.vercel.app/) to test query syntax.
 
 #### Simple Query
 
